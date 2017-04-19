@@ -1,0 +1,16 @@
+[vmrc-linux:children]
+vmrc-fedora
+vmrc-rhel
+
+[vmrc-fedora]
+10.8.197.104 ansible_user=root ansible_python_interpreter=/usr/bin/python3
+10.8.198.69 ansible_user=root ansible_python_interpreter=/usr/bin/python3
+10.8.196.223  ansible_user=root ansible_python_interpreter=/usr/bin/python3
+10.8.59.216 ansible_user=root
+10.8.59.66 ansible_user=root
+
+[vmrc-rhel]
+10.8.198.186 ansible_user=root
+10.8.59.98  ansible_user=root
+10.8.58.213 ansible_user=root
+10.8.197.153 ansible_user=root

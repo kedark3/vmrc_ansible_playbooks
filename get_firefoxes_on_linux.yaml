@@ -1,0 +1,51 @@
+---
+- hosts: vmrc-linux
+  vars_prompt:
+          - name: "FIREFOX_VERSION"
+            prompt: "Please enter version of firefox to be downloaded:"
+            private: no
+            default: 52
+
+  pre_tasks:
+
+          - name: install python2-dnf
+            package:
+                    name: python2-dnf
+                    state: latest
+            when: ansible_distribution == "Fedora" 
+
+
+  tasks:
+          - name : get firefox 
+            get_url:
+                    url: https://ftp.mozilla.org/pub/firefox/releases/{{ FIREFOX_VERSION }}.0/linux-x86_64/en-US/firefox-{{ FIREFOX_VERSION }}.0.tar.bz2 
+                    dest: /root/Downloads
+          - name: create extract location
+            file: 
+               path: /root/Downloads/firefox-{{ FIREFOX_VERSION }} 
+               state: directory 
+
+          - name: extract firefox 
+            unarchive:
+                    src: /root/Downloads/firefox-{{ FIREFOX_VERSION }}.0.tar.bz2
+                    dest: /root/Downloads/firefox-{{ FIREFOX_VERSION }}
+                    remote_src: true
+          - name: remove any pre-installed firefox browsers
+            package:
+                    name: firefox
+                    state: absent
+          - name: find the firefox defaults directory
+            find:
+               paths: "/root/.mozilla/firefox"
+               patterns: "prefs.js"
+               file_type: file
+               recurse: yes
+            register: FIREFOX_DEFAULTS_PATH       
+
+          - name: add settings to prefs.js that stops automatic updates of the firefox
+            lineinfile: 
+                     name: "{{ item.path }}"
+                     line: 'user_pref("app.update.auto", false);'
+            with_items: "{{ FIREFOX_DEFAULTS_PATH.files }}"
+
+
