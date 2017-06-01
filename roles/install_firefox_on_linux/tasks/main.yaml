@@ -1,0 +1,50 @@
+---
+          - name : get firefox 
+            get_url:
+                    url: https://ftp.mozilla.org/pub/firefox/releases/{{ item }}.0/linux-x86_64/en-US/firefox-{{ item }}.0.tar.bz2 
+                    dest: /home/cfme-qe/Downloads
+            with_items:
+              - "{{ FIREFOX_VERSION }}"
+
+
+          - name: create extract location
+            file: 
+               path: /home/cfme-qe/Downloads/firefox-{{ item }} 
+               state: directory 
+            with_items:
+              - "{{ FIREFOX_VERSION }}"
+
+          - name: extract firefox 
+            unarchive:
+                    src: /home/cfme-qe/Downloads/firefox-{{ item }}.0.tar.bz2
+                    dest: /home/cfme-qe/Downloads/firefox-{{ item }}
+                    remote_src: true
+            with_items:
+              - "{{ FIREFOX_VERSION }}"
+
+
+          - name: remove any pre-installed firefox browsers
+            package:
+                    name: firefox
+                    state: absent
+          - name: find the firefox defaults directory
+            find:
+               paths: "/home/cfme-qe/.mozilla/firefox"
+               patterns: "prefs.js"
+               file_type: file
+               recurse: yes
+            register: FIREFOX_DEFAULTS_PATH       
+
+          - name: add settings to prefs.js that stops automatic updates -firefox
+            lineinfile: 
+                     name: "{{ item.path }}"
+                     line: 'user_pref("app.update.auto", false);'
+            with_items: "{{ FIREFOX_DEFAULTS_PATH.files }}"
+
+          - name: add settings to prefs.js that disable updates - firefox
+            lineinfile: 
+                     name: "{{ item.path }}"
+                     line: 'user_pref("app.update.enabled", false);'
+            with_items: "{{ FIREFOX_DEFAULTS_PATH.files }}"
+
+

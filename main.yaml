@@ -1,0 +1,9 @@
+---
+- name: Setup VMRC Test compatible Envrionment
+  hosts: vmrc-linux
+  roles:
+    - install_firefox_on_linux
+    - { role: install_chrome_on_fedora, when: ansible_distribution == "Fedora" }
+    - { role: install_chrome_on_rhel, when: ansible_distribution == "RedHat" }
+    - install_vmrc_on_linux
+

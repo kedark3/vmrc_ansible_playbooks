@@ -1,0 +1,10 @@
+---
+          - name: get vmrc .bundle from fileserver
+            get_url:
+                    url: http://{{ VMRC_LOCATION }}
+                    dest: /home/cfme-qe/Downloads/vmrc.bundle
+                    mode: 0776
+                    group: cfme-qe
+
+          - name: install vmrc interactively
+            command: /bin/sh -c "yes n| /home/cfme-qe/Downloads/./vmrc.bundle --console --eulas-agreed"

@@ -1,0 +1,15 @@
+---
+  - name: copy google-chrome.repo
+    copy: 
+      src: google-chrome.repo
+      dest: /etc/yum.repos.d/
+      owner: root
+      group: root
+      mode: 644
+
+  - name: install  google chrome
+    package:
+      name: google-chrome-stable
+      state: present
+
+

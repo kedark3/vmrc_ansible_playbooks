@@ -1,0 +1,4 @@
+*.retry
+*swp*
+vars/rh_subscription_credentials
+vars/vmrc_location

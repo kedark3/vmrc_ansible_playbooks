@@ -1,0 +1,27 @@
+---
+      - name: copy google-chrome.repo
+        copy: 
+           src: google-chrome.repo
+           dest: /etc/yum.repos.d/
+           owner: root
+           group: root
+           mode: 644
+
+      - name: activate subscription on RHEL
+        redhat_subscription:
+          state:  present
+          username: "{{ RH_SUBSCRIPTION_USERNAME }}"
+          password: "{{ RH_SUBSCRIPTION_PASSWORD }}"
+          autosubscribe: true
+
+      - name: install  google chrome
+        package:
+          name: google-chrome-stable
+          state: present
+
+      - name: deactivate subscription on RHEL
+        redhat_subscription:
+          state:  absent
+          username: "{{ RH_SUBSCRIPTION_USERNAME }}"
+          password: "{{ RH_SUBSCRIPTION_PASSWORD }}"
+          autosubscribe: true
