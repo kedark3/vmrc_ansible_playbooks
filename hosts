@@ -4,41 +4,13 @@ vmrc-fedora
 vmrc-rhel
 local
 
-[vmrc-fedora:children]
-vmrc-fedora-vsphere55
-vmrc-fedora-vsphere6
-
-[vmrc-fedora-vsphere6]
-10.8.197.209 
-10.8.197.113 
-10.8.198.22 
+[vmrc-fedora]
+10.8.197.209
+10.8.197.113
 
 
-[vmrc-fedora-vsphere55]
-10.8.198.58 
-10.8.197.108 
-10.8.198.20 
-
-[vmrc-fedora-vsphere65]
-10.8.197.208 ansible_python_interpreter=/usr/bin/python3
-
-
-[vmrc-rhel:children]
-vmrc-rhel-vsphere6
-vmrc-rhel-vsphere55
-
-[vmrc-rhel-vsphere6]
-10.8.196.162 
-10.8.198.171 
-10.8.197.223
-
-[vmrc-rhel-vsphere55]
-10.8.196.108 
-10.8.196.245
-10.16.7.54
-
-[vmrc-rhel-vsphere65]
-10.8.198.58
+[vmrc-rhel]
+10.8.196.121
 
 
 [local]

@@ -3,3 +3,5 @@ FIREFOX_VERSION:
   - 51
   - 52
   - 53
+
+HOME_DIR: /home/cfme-qe
