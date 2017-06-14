@@ -2,22 +2,22 @@
           - name : get firefox 
             get_url:
                     url: https://ftp.mozilla.org/pub/firefox/releases/{{ item }}.0/linux-x86_64/en-US/firefox-{{ item }}.0.tar.bz2 
-                    dest: /home/cfme-qe/Downloads
-            with_items:
+                    dest: "{{ HOME_DIR }}/Downloads" 
+            with_items: 
               - "{{ FIREFOX_VERSION }}"
 
 
           - name: create extract location
             file: 
-               path: /home/cfme-qe/Downloads/firefox-{{ item }} 
+               path: "{{ HOME_DIR }}/Downloads/firefox-{{ item }} "
                state: directory 
             with_items:
               - "{{ FIREFOX_VERSION }}"
 
           - name: extract firefox 
             unarchive:
-                    src: /home/cfme-qe/Downloads/firefox-{{ item }}.0.tar.bz2
-                    dest: /home/cfme-qe/Downloads/firefox-{{ item }}
+                    src: "{{ HOME_DIR }}/Downloads/firefox-{{ item }}.0.tar.bz2"
+                    dest: "{{ HOME_DIR }}/Downloads/firefox-{{ item }}"
                     remote_src: true
             with_items:
               - "{{ FIREFOX_VERSION }}"
@@ -29,7 +29,7 @@
                     state: absent
           - name: find the firefox defaults directory
             find:
-               paths: "/home/cfme-qe/.mozilla/firefox"
+               paths: "{{ HOME_DIR }}/.mozilla/firefox"
                patterns: "prefs.js"
                file_type: file
                recurse: yes

@@ -1,2 +1,3 @@
 # location from where you can download the VMRC .bundle installation file for Linux
-VMRC_LOCATION: file.rdu.redhat.com/~mpusater/VMware-Remote-Console-9.0.0-4288332.x86_64.bundle 
+VMRC_LOCATION: <URL>
+HOME_DIR: /home/cfme-qe
