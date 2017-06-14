@@ -1,0 +1,5 @@
+# Rename this file to main.yaml 
+# And replace the following placeholders with the values
+
+RH_SUBSCRIPTION_USERNAME: <Username>
+RH_SUBSCRIPTION_PASSWORD: <Password>
