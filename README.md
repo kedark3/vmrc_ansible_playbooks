@@ -13,6 +13,7 @@ Every role in this project follows a simple directory structure in which it may 
 - **/defaults**: Includes main.yaml file which holds the default values of the variables that the role will require and
   it can be overridden by using --extra-vars on the command line at the time of execution of playbook. 
 - **/tasks**: Includes main.yaml tasks file, listing out all the tasks that are carried by the role 
+- **/files**: Includes google-chrome.repo file which you need in order to install chrome on linux.
 
 ## Running the Playbook
 ```sh
