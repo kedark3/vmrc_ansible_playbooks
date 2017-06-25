@@ -9,7 +9,7 @@
 
           - name: create extract location
             file: 
-               path: "{{ HOME_DIR }}/Downloads/firefox-{{ item }} "
+               path: "{{ HOME_DIR }}/Downloads/firefox-{{ item }}"
                state: directory 
             with_items:
               - "{{ FIREFOX_VERSION }}"
@@ -47,4 +47,9 @@
                      line: 'user_pref("app.update.enabled", false);'
             with_items: "{{ FIREFOX_DEFAULTS_PATH.files }}"
 
+          - name: add alias to firefox e.g. firefox54 will launch {{HOME_DIR}}/Downloads/firefox-54/firefox/./firefox
+            lineinfile:
+                    name: "{{ HOME_DIR}}/.bashrc"
+                    line: 'alias firefox{{ item }}="{{ HOME_DIR }}/Downloads/firefox-{{ item }}/firefox/./firefox"'
+            with_items: "{{ FIREFOX_VERSION }}"
 

@@ -2,3 +2,4 @@
 *swp*
 vars/rh_subscription_credentials
 vars/vmrc_location
+roles/install_chrome_on_rhel/defaults/main.yaml
