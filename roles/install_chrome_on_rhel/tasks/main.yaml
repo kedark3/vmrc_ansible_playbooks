@@ -1,7 +1,7 @@
 ---
       - name: copy google-chrome.repo
         copy: 
-           src: google-chrome.repo
+           src: files/google-chrome.repo
            dest: /etc/yum.repos.d/
            owner: root
            group: root
