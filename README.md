@@ -48,3 +48,10 @@ ansible-playbook main.yaml -l 10.8.*
 This repo has own ansible.cfg file which overrides global ansible.cfg file. It mostly has all the required options and you do not need to worry about anything
 in this file. File is also very well commented and you can read and modify it to conform your requirements.Funny thing that this file does is 
 that it allows all cowsay stencils from cow_whitelist, so every task has a different animal/character cowsay. 
+
+**Example**: 
+Running tasks with the tag and overriding default vars using --extra-vars can be done as follows: 
+
+```sh
+ansible-playbook main.yaml --tags=firefox  --extra-vars FIREFOX_VERSION=[45,46]
+```
