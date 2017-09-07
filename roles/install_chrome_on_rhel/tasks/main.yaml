@@ -6,6 +6,7 @@
            owner: root
            group: root
            mode: 644
+           remote_src: no
 
       - name: activate subscription on RHEL
         redhat_subscription:

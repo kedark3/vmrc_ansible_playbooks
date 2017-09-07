@@ -6,6 +6,7 @@
       owner: root
       group: root
       mode: 644
+      remote_src: no
 
   - name: install  google chrome
     package:
