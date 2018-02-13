@@ -1,5 +1,5 @@
 ---
-- hosts: all
+- hosts: localhost
   tasks:
     - debug: var=manageiq.api_url
     - debug: var=manageiq.api_token
@@ -43,5 +43,4 @@
     - name: Check if the VM was successfully attached to service
       fail: msg="{{output.json.results[0].message}}"
       when: output.json.results[0].success == false
-
 
