@@ -1,0 +1,8 @@
+---
+- name: Simple playbook ran against CFME/ManageIQ in Ansible Services - retirement playbook
+  hosts: all
+  tasks: 
+    - name: Remove the file on given host
+      file:
+        path: /tmp/ansible-touched-file
+        state: absent 
